@@ -21,3 +21,17 @@ Finished: SUCCESS`
 
 Then I configured the connection to my github repository.
 my-job -> Configure -> Source Code Management -> Git
+
+Docker im Jenkins 
+
+In order to create automatically docker images from my application, I needed to allow access docker from jenkins.
+
+I restarted jenkins container with related volumes and started to configure such things as 
+
+`curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall` - fetch docker latest version and allow jenkins execute commands inside the container
+
+docker.sock file is a Unix socket file, used by the Docker daemon to communicate with Docker client
+
+`chmod 666 /var/run/docker.sock` 
+
+As I have understood I gave to the jenkins user permission to rw inside the container where Jenkins running
