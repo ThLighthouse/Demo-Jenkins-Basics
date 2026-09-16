@@ -43,3 +43,10 @@ I configured nexus private repository and configured neccessary files such as `/
 
 - Suitable for CI/CD
 - Scripting - Pipeline as code
+
+As I have understood, pipeline job is more convenient regarding to the freestyle job. Pipeline job has such advantages as:
+
+- non UI configuration
+- one job with its stages
+- no need to download plugins for each job
+- write pipeline as a code(groovy script)
