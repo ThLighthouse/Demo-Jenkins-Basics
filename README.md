@@ -35,3 +35,11 @@ docker.sock file is a Unix socket file, used by the Docker daemon to communicate
 `chmod 666 /var/run/docker.sock` 
 
 As I have understood I gave to the jenkins user permission to rw inside the container where Jenkins running
+
+
+I configured nexus private repository and configured neccessary files such as `/etc/docker/daemon.json` in the VM, where Jenkins is running in order to reach nexus docker-hosted repository.
+
+### Intro to Pipeline job
+
+- Suitable for CI/CD
+- Scripting - Pipeline as code
