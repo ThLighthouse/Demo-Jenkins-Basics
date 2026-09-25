@@ -1,6 +1,8 @@
-I installed and configured Jenkins on AWS EC2 as a docker container. Then opened Jenkins UI in my browser.
+###  Install Jenkins on the AWS EC2 and configure plugins
 
-Then we installed build tools to the Jenkins, like npm via docker cli and maven via Jenkins plugins. Created a freestyle job and configured there needed commands to be exectued in the job.
+I installed Jenkins as a docker container on the AWS EC2. Configured port `8080` and opened Jenkins UI.
+Then I added such plugins as maven via UI also added nodejs and npm plugins inside the container via docker CLI, where jenkins is running.
+These are the two steps to allow Jenkins use build tools. Install build tools via Jenkins UI or install build tools via docker CLI. 
 
 
 `Started by user alisher
@@ -39,14 +41,3 @@ As I have understood I gave to the jenkins user permission to rw inside the cont
 
 I configured nexus private repository and configured neccessary files such as `/etc/docker/daemon.json` in the VM, where Jenkins is running in order to reach nexus docker-hosted repository.
 
-### Intro to Pipeline job
-
-- Suitable for CI/CD
-- Scripting - Pipeline as code
-
-As I have understood, pipeline job is more convenient regarding to the freestyle job. Pipeline job has such advantages as:
-
-- non UI configuration
-- one job with its stages
-- no need to download plugins for each job
-- write pipeline as a code(groovy script)
