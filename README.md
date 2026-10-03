@@ -46,7 +46,10 @@ Firstly, I have created `Freestyle Job` (my-job). This is the most basic type in
 - Straightforward to set up and configure - suitable for simple, small-scale projects.
 - Lack some advanced features provided by newer job types.
 
-`Started by user alisher
+Inside the `Freestyle Job` I have configured first jobs in `Build Steps` section and I have choosen `Exectue shell` option for `npm` commands, which allows to execute normal shell commands. 
+
+```
+Started by user alisher
 Running as SYSTEM
 Building in workspace /var/jenkins_home/workspace/my-job
 [my-job] $ /bin/sh -xe /tmp/jenkins11636458972420802004.sh
@@ -60,12 +63,16 @@ Maven home: /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3
 Java version: 21.0.11, vendor: Eclipse Adoptium, runtime: /opt/java/openjdk
 Default locale: en, platform encoding: UTF-8
 OS name: "linux", version: "7.0.0-1006-aws", arch: "amd64", family: "unix"
-Finished: SUCCESS`
+Finished: SUCCESS
+```
+## Configure Git Repository
 
 Then I configured the connection to my github repository.
 my-job -> Configure -> Source Code Management -> Git
 
-Docker im Jenkins 
+In order to allow Jenkins to work with my github repository, I have added my repo to the Repository URL section: `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git` and configured its credentials to authenticate and clone git repo.
+
+Docker in Jenkins 
 
 In order to create automatically docker images from my application, I needed to allow access docker from jenkins.
 
