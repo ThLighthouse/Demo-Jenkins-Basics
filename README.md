@@ -1,9 +1,50 @@
-###  Install Jenkins on the AWS EC2 and configure plugins
+###  Install Jenkins on the AWS EC2 and configure plugins (DEMO #1)
 
-I installed Jenkins as a docker container on the AWS EC2. Configured port `8080` and opened Jenkins UI.
-Then I added such plugins as maven via UI also added nodejs and npm plugins inside the container via docker CLI, where jenkins is running.
-These are the two steps to allow Jenkins use build tools. Install build tools via Jenkins UI or install build tools via docker CLI. 
+Actually there are two ways to install Jenkins on a Server: 
 
+1) Install Jenkins directly on OS:
+    - Download package and install on server
+    - Create separate Jenkins User on server
+    - Download binaries, etc
+
+2) Run Jenkins as Docker container
+    - No need to download and configure users, tools
+    - All needed staff will be in container
+
+
+I have installed Jenkins as a docker container on the AWS EC2(jenkins-server). Configured port `8080` and opened Jenkins UI. Hangaround with Jenkins UI and got familiar with build tools and plugins(maven, gradle) 
+
+I have installed `Maven` plugin via Jenkins UI in the `Plugins` section.
+Then I have installed nodejs plugin inside the container via `docker CLI`.
+
+First of all I went inside the container itself as a root user to install all needed plugins.
+
+`docker exec -u 0 -it <container_ID> bash`
+
+After that I have downloaded the script that consists all the commands to install `nodejs` and `npm`.
+
+`curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
+
+```
+root@c09429159235:/# node -v
+v20.20.2
+root@c09429159235:/# npm -v
+10.8.2
+root@c09429159235:/# 
+```
+
+Then I have installed to the jenkins-server very useful plugin such as `Stage View Plugin` via Jenkins UI.
+The plugin show:
+- the progress of each stage
+- let's us see which stages pass or which stage broke the pipeline
+
+---
+
+### Jenkins Basics (DEMO #2)
+
+Firstly, I have created `Freestyle Job` (my-job). This is the most basic type in Jenkins.
+- Straightforward to set up and configure - suitable for simple, small-scale projects.
+- Lack some advanced features provided by newer job types.
 
 `Started by user alisher
 Running as SYSTEM
