@@ -114,9 +114,36 @@ Finished: SUCCESS
 ## Build actual Demo project
 # Run tests and build Java Application
 
-
 I have created a new `Freestyle Job`(java-maven-build). And here we actually run tests on java-maven app and build a jar file of that application.
+
 In order to run test I have copied test file(AppTest.java) from `jenkins-job` branch and added it to my work branch `jenkins-practice`.
+And run the configured build on the Jenkins.
+
+```
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running AppTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.124 s -- in AppTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ java-maven-app ---
+[INFO] Building jar: /var/jenkins_home/workspace/java-maven-build/target/java-maven-app-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.5:repackage (default) @ java-maven-app ---
+[INFO] Replacing main artifact /var/jenkins_home/workspace/java-maven-build/target/java-maven-app-1.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /var/jenkins_home/workspace/java-maven-build/target/java-maven-app-1.1.0-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.614 s
+[INFO] Finished at: 2026-10-03T08:18:20Z
+[INFO] ------------------------------------------------------------------------
+Finished: SUCCESS
+```
 
 Docker in Jenkins 
 
