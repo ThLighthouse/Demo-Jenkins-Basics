@@ -116,7 +116,7 @@ Finished: SUCCESS
 
 
 I have created a new `Freestyle Job`(java-maven-build). And here we actually run tests on java-maven app and build a jar file of that application.
-
+In order to run test I have copied test file(AppTest.java) from `jenkins-job` branch and added it to my work branch `jenkins-practice`.
 
 Docker in Jenkins 
 
