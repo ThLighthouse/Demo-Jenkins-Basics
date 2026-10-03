@@ -41,6 +41,7 @@ The plugin show:
 ---
 
 ### Jenkins Basics (DEMO #2)
+## Showcase how to configure build tools and execute commands.
 
 Firstly, I have created `Freestyle Job` (my-job). This is the most basic type in Jenkins.
 - Straightforward to set up and configure - suitable for simple, small-scale projects.
@@ -71,6 +72,51 @@ Then I configured the connection to my github repository.
 my-job -> Configure -> Source Code Management -> Git
 
 In order to allow Jenkins to work with my github repository, I have added my repo to the Repository URL section: `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git` and configured its credentials to authenticate and clone git repo.
+
+In order to Jenkins does some jobs in my repository I have added Shell script(freestyle-build.sh) which executes `--npm version` command.
+
+```
+Started by user alisher
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/my-job
+The recommended git tool is: NONE
+using credential github-credentials
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/my-job/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url 
+https://github.com/ThLighthouse/Demo-Jenkins-Basics.git # timeout=10
+Fetching upstream changes from https://github.com/ThLighthouse/Demo-Jenkins-Basics.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/ThLighthouse/Demo-Jenkins-Basics.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/jenkins-practice^{commit} # timeout=10
+Checking out Revision 782424c1f7ea34271824083a51182350c3c74c54 (refs/remotes/origin/jenkins-practice)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 782424c1f7ea34271824083a51182350c3c74c54 # timeout=10
+Commit message: "jenkins(demo): add freestyle-build script and add git configuration step to README.md"
+First time build. Skipping changelog.
+[my-job] $ /bin/sh -xe /tmp/jenkins4897465575917074776.sh
++ chmod +x freestyle-build.sh
++ ./freestyle-build.sh
+10.8.2
+[my-job] $ /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.9/bin/mvn --version
+Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)
+Maven home: /var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.9
+Java version: 21.0.11, vendor: Eclipse Adoptium, runtime: /opt/java/openjdk
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "7.0.0-1012-aws", arch: "amd64", family: "unix"
+Finished: SUCCESS
+```
+
+---
+
+## Build actual Demo project
+# Run tests and build Java Application
+
+
+I have created a new `Freestyle Job`(java-maven-build). And here we actually run tests on java-maven app and build a jar file of that application.
+
 
 Docker in Jenkins 
 
