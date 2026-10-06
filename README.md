@@ -145,20 +145,30 @@ And run the configured build on the Jenkins.
 Finished: SUCCESS
 ```
 
-Docker in Jenkins 
+# Docker in Jenkins
 
-In order to create automatically docker images from my application, I needed to allow access docker from jenkins.
+In order to create the image from our application we need to make available docker commands inside our Jenkins container. The common way is to mount `Docker runtime directory` from our EC2 instance into the container as a volume. And this makes docker available inside the container.
 
-I restarted jenkins container with related volumes and started to configure such things as 
+Run the container and mount `docker runtime directory` into it:
+
+```
+docker run -p 8080:8080 -p 50000:50000 -d \
+-v jenkins_home:/var/jenkins_home \
+-v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts
+```
+
+Inside the container:
 
 `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall` - fetch docker latest version and allow jenkins execute commands inside the container
 
-docker.sock file is a Unix socket file, used by the Docker daemon to communicate with Docker client
+`docker.sock` file is a Unix socket file, used by the Docker daemon to communicate with Docker client
+`chmod 666 /var/run/docker.sock` - 
+```
+ls -l /var/run/docker.sock 
+srw-rw-rw- 1 root docker-host 0 Oct  6 06:35 /var/run/docker.sock
+``` 
 
-`chmod 666 /var/run/docker.sock` 
-
-As I have understood I gave to the jenkins user permission to rw inside the container where Jenkins running
+# Building docker image stage
 
 
-I configured nexus private repository and configured neccessary files such as `/etc/docker/daemon.json` in the VM, where Jenkins is running in order to reach nexus docker-hosted repository.
 
