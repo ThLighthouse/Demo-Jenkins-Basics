@@ -162,7 +162,7 @@ Inside the container:
 `curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall` - fetch docker latest version and allow jenkins execute commands inside the container
 
 `docker.sock` file is a Unix socket file, used by the Docker daemon to communicate with Docker client
-`chmod 666 /var/run/docker.sock` - 
+`chmod 666 /var/run/docker.sock` - give everebodu rw permissions to execute docker commands. 
 ```
 ls -l /var/run/docker.sock 
 srw-rw-rw- 1 root docker-host 0 Oct  6 06:35 /var/run/docker.sock
@@ -170,5 +170,91 @@ srw-rw-rw- 1 root docker-host 0 Oct  6 06:35 /var/run/docker.sock
 
 # Building docker image stage
 
+To build the `docker image` I have copied `Dockerfile` from `jenkins-job` branch.
+Then I have configured `docker commands` inside the `Jenkins job`:
+
+`docker build -t java-maven-app:1.0 .`
+
+```
+[INFO] Replacing main artifact /var/jenkins_home/workspace/java-maven-build/target/java-maven-app-1.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /var/jenkins_home/workspace/java-maven-build/target/java-maven-app-1.1.0-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.673 s
+[INFO] Finished at: 2026-10-06T07:17:37Z
+[INFO] ------------------------------------------------------------------------
+[java-maven-build] $ /bin/sh -xe /tmp/jenkins8780785760807523452.sh
++ docker build -t java-maven-app:1.0 .
+```
+
+The image: 
+
+```
+docker images
+IMAGE                 ID             DISK USAGE   CONTENT SIZE   EXTRA
+java-maven-app:1.0    91f4571d0ed5        545MB          196MB        
+```
+
+# Push Image to Docker Hub
+
+We need to create credentials firstly to push images to our Private Repository.
+I have created the an account the Dockerhub `https://hub.docker.com/u/thlighthouse` and configured the private repository there and added credentials to that repo `https://hub.docker.com/r/thlighthouse/demo-app`.
+
+In order to push the image to our private repository we need to configure:
+    - docker credentials
+    - docker tag
+
+To add my credentials for Private Docker repository into the Jenkins job I have configured `Use secret text(s) or file(s)` plugin with `Username and password(separated)` binding.
+
+The way we push the Docker image to repository is to tag the Image with your DockerHub repository.
+
+```
+docker build -t thlighthouse/demo-app:jma-1.0 .
+docker login -u $USERNAME -p $PASSWORD
+docker push thlighthouse/demo-app:jma-1.0
+```
+
+# Push Image to Nexus Private Repository
+
+In order to get access to the Nexus Private Repository we need to configure credentials at the `Jenkins-server`. We need to create such file as a `daemon.json`.
+
+`cat /etc/docker/daemon.json`
+
+```
+{
+	"insecure-registries":["3.73.121.15:8083"]
+}
+```
+
+The next process is the same as with the `DockerHub Repo`. I have configured repository on the `Nexus`, configured credentials on the `Jenkins Job` and added credentials. Tag the image again with Nexus name: 
+
+```
+docker build -t 3.73.121.15:8083/java-maven-app:1.1 .
+echo $PASSWORD | docker login -u $USERNAME --password-stdin 3.73.121.15:8083
+docker push 3.73.121.15:8083/java-maven-app:1.1
+```
 
 
+```
+Login Succeeded
++ docker push 3.73.121.15:8083/java-maven-app:1.1
+The push refers to repository [3.73.121.15:8083/java-maven-app]
+4f4fb700ef54: Waiting
+e2de96513ba9: Waiting
+0c470d9f3e7b: Waiting
+6e8f492806ec: Waiting
+356064565af6: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+4f4fb700ef54: Waiting
+356064565af6: Pushed
+4f4fb700ef54: Layer already exists
+e2de96513ba9: Pushed
+6e8f492806ec: Pushed
+0c470d9f3e7b: Pushed
+1.1: digest: sha256:5ff58a42a82904098be7f0ad0d645baeaaa67757989befe8b4bf03e4c859ea11 size: 856
+Finished: SUCCESS
+```
