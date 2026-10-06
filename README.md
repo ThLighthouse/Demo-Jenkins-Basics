@@ -258,3 +258,8 @@ e2de96513ba9: Pushed
 1.1: digest: sha256:5ff58a42a82904098be7f0ad0d645baeaaa67757989befe8b4bf03e4c859ea11 size: 856
 Finished: SUCCESS
 ```
+
+# Pipeline Job
+
+I have created a `pipeline job`. First thing then I have connected my git repository for this pipeline "Pipeline script from SCM": `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git`.
+
