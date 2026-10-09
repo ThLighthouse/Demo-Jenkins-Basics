@@ -261,5 +261,4 @@ Finished: SUCCESS
 
 # Pipeline Job
 
-I have created a `pipeline job`. First thing then I have connected my git repository for this pipeline "Pipeline script from SCM": `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git`.
-
+I have created a `pipeline job`. First thing then I have connected my git repository for this pipeline "Pipeline script from SCM": `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git`. I also created `Jenkinsfile` for the pipeline job in order to automate the build.
