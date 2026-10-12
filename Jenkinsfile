@@ -13,14 +13,16 @@ pipeline {
             }
         }
 
-        stage('Build Docker image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     echo "Building Docker image..."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS' , usernameVariable: 'USER')])
-                    sh 'docker build -t thlighthouse/demo-app:jma-2.0 .'
-                    sh 'echo $PASS | docker login -u $USER --password-stdin'
-                    sh 'docker push thlighthouse/demo-app:jma-2.0'
+
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                        sh 'docker build -t thlighthouse/demo-app:jma-2.0 .'
+                        sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
+                        sh 'docker push thlighthouse/demo-app:jma-2.0'
+                    }
                 }
             }
         }
