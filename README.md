@@ -262,3 +262,7 @@ Finished: SUCCESS
 # Pipeline Job
 
 I have created a `pipeline job`. First thing then I have connected my git repository for this pipeline "Pipeline script from SCM": `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git`. I also created `Jenkinsfile` for the pipeline job in order to automate the build.
+
+# Create complete Pipeline
+
+I have created the `build jar file` and `build image` steps inside the Jenkinsfile in order to automate steps.  
