@@ -277,5 +277,8 @@ Creation of the Shared Library:
 - Make the Shared Library available globally or for project
 - Use the Shared Library in Jenkinsfile to extend the Pipeline
 
-I have created another repository and called it `jenkins-shared-library`. There I have started to create groovy files where I have written functions like /vars/buildJar, /vars/buildDockerImage. Then inside the Jenkins itself I made it available globally:
-System ->  Global Trusted Pipeline Libraries 
+I have created another repository and called it `jenkins-shared-library`. 
+Repository URL: "https://gitlab.com/alisher.khusainov/jenkins-shared-library"
+
+There I have started to create groovy files where I have written functions like /vars/buildJar, /vars/buildDockerImage. Then inside the Jenkins itself I made it available globally:
+System ->  Global Trusted Pipeline Libraries. Also added JSL into the Jenkinsfiles inside the branches. 
