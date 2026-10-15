@@ -259,10 +259,23 @@ e2de96513ba9: Pushed
 Finished: SUCCESS
 ```
 
-# Pipeline Job
+### Pipeline Job
 
 I have created a `pipeline job`. First thing then I have connected my git repository for this pipeline "Pipeline script from SCM": `https://github.com/ThLighthouse/Demo-Jenkins-Basics.git`. I also created `Jenkinsfile` for the pipeline job in order to automate the build.
+I have created the `build jar file` and `build image` steps inside the Jenkinsfile in order to automate steps. 
 
-# Create complete Pipeline
+---
 
-I have created the `build jar file` and `build image` steps inside the Jenkinsfile in order to automate steps.  
+# Jenkins Shared Library (DEMO #3)
+
+JSL is an extension to the Pipeline, it has its own repository and also written in Groovy.
+Consists the same logic for shared pipeline code.
+
+Creation of the Shared Library:
+- Create Repository
+- Write the Groovy Code
+- Make the Shared Library available globally or for project
+- Use the Shared Library in Jenkinsfile to extend the Pipeline
+
+I have created another repository and called it `jenkins-shared-library`. There I have started to create groovy files where I have written functions like /vars/buildJar, /vars/buildDockerImage. Then inside the Jenkins itself I made it available globally:
+System ->  Global Trusted Pipeline Libraries 
