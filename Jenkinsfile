@@ -27,7 +27,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    buildImage()
+                    buildImage 'thlighthouse/demo-app:jma-3.0'
                 }
             }
         }
