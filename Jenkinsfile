@@ -24,10 +24,12 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Docker Image and push') {
             steps {
                 script {
                     buildImage 'thlighthouse/demo-app:jma-3.0'
+                    dockerLogin()
+                    dockerPush 'thlighthouse/demo-app:jma-3.0'
                 }
             }
         }
