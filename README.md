@@ -282,3 +282,11 @@ There I have started to create groovy files where I have written functions like 
 System ->  Global Trusted Pipeline Libraries. Also added JSL into the Jenkinsfiles inside the branches. 
 I created small Jenkins Shared Library in separate repository 
 Repository URL: "https://gitlab.com/alisher.khusainov/jenkins-shared-library" and added all necessary files. 
+
+---
+
+# Trigger Jenkins Jobs - Webhooks
+
+To automate the Triggering of my pipeline, I have installed github plugin to Jenkins and configured its credentials.
+
+# TEST GITHUB -> JENKINS INTEGRATION
