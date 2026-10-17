@@ -288,5 +288,3 @@ Repository URL: "https://gitlab.com/alisher.khusainov/jenkins-shared-library" an
 # Trigger Jenkins Jobs - Webhooks
 
 To automate the Triggering of my pipeline, I have installed github plugin to Jenkins and configured its credentials.
-
-# TEST GITHUB -> JENKINS INTEGRATION

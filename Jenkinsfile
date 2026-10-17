@@ -33,6 +33,7 @@ pipeline {
             steps {
                 script {
                     gv.deployApp()
+                    sh 'echo "TEST: GITHUB -> JENKINS INTEGRATION with MULTIBRANCH-PIPELINE"'
                 }
             }
         }
