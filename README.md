@@ -285,6 +285,23 @@ Repository URL: "https://gitlab.com/alisher.khusainov/jenkins-shared-library" an
 
 ---
 
-# Trigger Jenkins Jobs - Webhooks
+# Trigger Jenkins Jobs - Webhooks (DEMO #4)
 
 To automate the Triggering of my pipeline, I have installed github plugin to Jenkins and configured its credentials.
+
+Jenkins was configured to start builds automatically after changes are pushed to GitHub.
+
+For the regular Pipeline job, the GitHub webhook sends push events to:
+
+```text
+<JENKINS_URL>/github-webhook/
+```
+
+The Jenkins job uses the GitHub hook trigger for GITScm polling option, so every push to the configured branch starts the pipeline automatically.
+
+For the Multibranch Pipeline, the Multibranch Scan Webhook Trigger plugin was used. A separate webhook triggers repository scanning:
+```
+<JENKINS_URL>/multibranch-webhook-trigger/invoke?token=<TOKEN>
+```
+
+After the scan, Jenkins detects which branch was updated and starts only the corresponding branch pipeline.
