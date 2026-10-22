@@ -340,3 +340,6 @@ Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons
 ```
 
 The next step is to configure dynamicall incrementation into the Jenkins. 
+
+Then I have configured version incrementation in for Jenkins stages in `jenkins-jobs` branch.
+After the build finished in Jenkins a have the image in my docker repository that was incremented successfully from 1.1.8 -> 1.1.9-3
