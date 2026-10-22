@@ -54,7 +54,6 @@ pipeline {
         stage('commit version update') {
             steps {
                 script {
-                    withCredentials(usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')) {
                         sh 'git config user.email "jenkins@example.com"'
                         sh 'git config user.name "Jenkins"'
 
@@ -62,8 +61,11 @@ pipeline {
                         sh 'git branch'
                         sh 'git config --list'
 
-                        sh "git remote set-url origin https://${USER}:${PASSWORD}@github.com/ThLighthouse/Demo-Jenkins-Basics.git"
-                        sh 'git add .'
+                        withCredentials([gitUsernamePassword(
+                            credentialsId: 'github-credentials',
+                            gitToolName: 'git',
+                        )]) {
+                        sh 'git add pom.xml'
                         sh 'git commit -m "ci: increment version"'
                         sh 'git push origin HEAD:jenkins-jobs'
                     }
