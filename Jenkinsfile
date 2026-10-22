@@ -46,7 +46,28 @@ pipeline {
 
         stage('Deploy application') {
             steps {
-                echo "Deploying the application..."
+                script {
+                    echo "Deploying docker image..."                }
+            }
+        }
+
+        stage('commit version update') {
+            steps {
+                script {
+                    withCredentials(usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'USER', passwordVariable: 'PASSWORD')) {
+                        sh 'git config user.email "jenkins@example.com"'
+                        sh 'git config user.name "Jenkins"'
+
+                        sh 'git status'
+                        sh 'git branch'
+                        sh 'git config --list'
+
+                        sh "git remote set-url origin https://${USER}:${PASSWORD}@github.com/ThLighthouse/Demo-Jenkins-Basics.git"
+                        sh 'git add .'
+                        sh 'git commit -m "ci: increment version"'
+                        sh 'git push origin HEAD:jenkins-jobs'
+                    }
+                }
             }
         }
     }
