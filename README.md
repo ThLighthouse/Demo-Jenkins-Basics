@@ -225,8 +225,9 @@ I used several branches during the module because each one represents a differen
 
 `jenkins-shared-lib` contains the application pipeline integrated with the separate Jenkins Shared Library repository.
 
-The final cleaned project was merged into `main`.
-The `jenkins-jobs` and `jenkins-shared-lib` branches are kept as examples of specific Jenkins demos.
+main contains the cleaned core Jenkins pipeline developed throughout the module.
+
+The more specialized demos are intentionally kept in separate branches: jenkins-jobs contains the dynamic versioning and Git commit-back implementation, while jenkins-shared-lib demonstrates the Jenkins Shared Library integration.
 
 ## Main things I learned
 
