@@ -225,7 +225,8 @@ I used several branches during the module because each one represents a differen
 
 `jenkins-shared-lib` contains the application pipeline integrated with the separate Jenkins Shared Library repository.
 
-After the final review, the cleaned project from `jenkins-practice` is intended to be merged into `main`, while the other branches remain as examples of the specific demos.
+The final cleaned project was merged into `main`.
+The `jenkins-jobs` and `jenkins-shared-lib` branches are kept as examples of specific Jenkins demos.
 
 ## Main things I learned
 
