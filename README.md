@@ -305,3 +305,38 @@ For the Multibranch Pipeline, the Multibranch Scan Webhook Trigger plugin was us
 ```
 
 After the scan, Jenkins detects which branch was updated and starts only the corresponding branch pipeline.
+
+
+# Dynamically Increment of the App Version
+
+Firtsly I have incremented java-maven app patch version with plugin such as `build-helper` locally:
+
+```
+mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit
+```
+
+```
+Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/commons/commons-lang3/3.21.0/commons-lang3-3.21.0.jar (749 kB at 376 kB/s)
+[INFO] Searching for local aggregator root...
+[INFO] Local aggregation root: /home/alisher/devops-bootcamp-projects/Demo-Jenkins-Basics
+[INFO] Processing change of com.example:java-maven-app:1.1.0-SNAPSHOT -> 1.1.1
+[INFO] Processing com.example:java-maven-app
+[INFO]     Updating project com.example:java-maven-app
+[INFO]         from version 1.1.0-SNAPSHOT to 1.1.1
+[INFO] 
+[INFO] 
+[INFO] ---------------------< com.example:java-maven-app >---------------------
+[INFO] Building java-maven-app 1.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- versions-maven-plugin:2.23.0:commit (default-cli) @ java-maven-app ---
+[INFO] Accepting all changes to /home/alisher/devops-bootcamp-projects/Demo-Jenkins-Basics/pom.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  26.292 s
+[INFO] Finished at: 2026-10-22T06:35:58+05:00
+[INFO] ------------------------------------------------------------------------
+```
+
+The next step is to configure dynamicall incrementation into the Jenkins. 
